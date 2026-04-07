@@ -1,0 +1,123 @@
+services:
+  - type: worker
+    name: ragbot-drive-worker-0
+    env: node
+    plan: free
+    buildCommand: npm ci
+    startCommand: npm run worker:drive
+    autoDeploy: true
+    envVars:
+      - key: CONVEX_URL
+        sync: false
+      - key: DRIVE_FOLDER_ID
+        sync: false
+      - key: GOOGLE_SERVICE_ACCOUNT_JSON
+        sync: false
+      - key: DISCORD_WEBHOOK_URL
+        sync: false
+      - key: TOTAL_WORKERS
+        value: "5"
+      - key: WORKER_ID
+        value: "0"
+      - key: BATCH_SIZE
+        value: "40"
+      - key: FILE_CONCURRENCY
+        value: "1"
+      - key: UPLOAD_CONCURRENCY
+        value: "3"
+      - key: POLL_INTERVAL_MS
+        value: "30000"
+      - key: POLL_STAGGER_MS
+        value: "2000"
+      - key: POLL_JITTER_MS
+        value: "3000"
+      - key: MAX_RETRIES
+        value: "2"
+      - key: DRIVE_LIST_PAGE_SIZE
+        value: "200"
+      - key: OCR_MAX_MB
+        value: "8"
+      - key: OCR_NUM_WORKERS
+        value: "1"
+
+  - type: worker
+    name: ragbot-drive-worker-1
+    env: node
+    plan: free
+    buildCommand: npm ci
+    startCommand: npm run worker:drive
+    autoDeploy: true
+    envVars:
+      - key: CONVEX_URL
+        sync: false
+      - key: DRIVE_FOLDER_ID
+        sync: false
+      - key: GOOGLE_SERVICE_ACCOUNT_JSON
+        sync: false
+      - key: DISCORD_WEBHOOK_URL
+        sync: false
+      - key: TOTAL_WORKERS
+        value: "5"
+      - key: WORKER_ID
+        value: "1"
+      - key: BATCH_SIZE
+        value: "40"
+      - key: FILE_CONCURRENCY
+        value: "1"
+      - key: UPLOAD_CONCURRENCY
+        value: "3"
+      - key: POLL_INTERVAL_MS
+        value: "30000"
+      - key: POLL_STAGGER_MS
+        value: "2000"
+      - key: POLL_JITTER_MS
+        value: "3000"
+      - key: MAX_RETRIES
+        value: "2"
+      - key: DRIVE_LIST_PAGE_SIZE
+        value: "200"
+      - key: OCR_MAX_MB
+        value: "8"
+      - key: OCR_NUM_WORKERS
+        value: "1"
+
+  - type: worker
+    name: ragbot-drive-worker-2
+    env: node
+    plan: free
+    buildCommand: npm ci
+    startCommand: npm run worker:drive
+    autoDeploy: true
+    envVars:
+      - key: CONVEX_URL
+        sync: false
+      - key: DRIVE_FOLDER_ID
+        sync: false
+      - key: GOOGLE_SERVICE_ACCOUNT_JSON
+        sync: false
+      - key: DISCORD_WEBHOOK_URL
+        sync: false
+      - key: TOTAL_WORKERS
+        value: "5"
+      - key: WORKER_ID
+        value: "2"
+      - key: BATCH_SIZE
+        value: "40"
+      - key: FILE_CONCURRENCY
+        value: "1"
+      - key: UPLOAD_CONCURRENCY
+        value: "3"
+      - key: POLL_INTERVAL_MS
+        value: "30000"
+      - key: POLL_STAGGER_MS
+        value: "2000"
+      - key: POLL_JITTER_MS
+        value: "3000"
+      - key: MAX_RETRIES
+        value: "2"
+      - key: DRIVE_LIST_PAGE_SIZE
+        value: "200"
+      - key: OCR_MAX_MB
+        value: "8"
+      - key: OCR_NUM_WORKERS
+        value: "1"

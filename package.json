@@ -1,0 +1,55 @@
+{
+  "name": "rag-convex-rag",
+  "version": "0.1.0",
+  "private": true,
+  "engines": {
+    "node": "22.x"
+  },
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint",
+    "convex:dev": "convex dev",
+    "convex:dev:quiet": "convex dev --typecheck disable --tail-logs disable",
+    "typecheck": "tsc --noEmit",
+    "worker:drive": "tsx worker/drive_ingest.ts"
+  },
+  "dependencies": {
+    "@ai-sdk/groq": "^3.0.31",
+    "@convex-dev/agent": "^0.6.1",
+    "@convex-dev/rag": "^0.7.1",
+    "@xenova/transformers": "^2.17.2",
+    "ai": "^6.0.138",
+    "compute-cosine-similarity": "^1.1.0",
+    "convex": "^1.32.0",
+    "convex-helpers": "^0.1.114",
+    "dotenv": "^17.3.1",
+    "google-auth-library": "^10.6.2",
+    "groq-sdk": "^0.37.0",
+    "next": "16.1.6",
+    "officeparser": "^6.0.7",
+    "pdf-parse": "^2.4.5",
+    "react": "19.2.3",
+    "react-dom": "19.2.3",
+    "react-markdown": "^10.1.0",
+    "remark-gfm": "^4.0.1",
+    "sharp": "^0.34.5",
+    "tsx": "^4.21.0",
+    "tesseract.js": "^7.0.0"
+  },
+  "optionalDependencies": {
+    "@img/sharp-linux-arm64": "^0.34.5",
+    "@img/sharp-linux-x64": "^0.34.5"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9",
+    "eslint-config-next": "16.1.6",
+    "tailwindcss": "^4",
+    "typescript": "^5"
+  }
+}
