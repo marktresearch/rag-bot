@@ -251,16 +251,34 @@ function getIntegerEnv(names: string | string[], fallback: number, minimum = 0) 
 
 function parseServiceAccountJson(rawValue: string) {
   const trimmed = rawValue.trim();
-  const normalized = trimmed.startsWith("$/") ? trimmed.slice(1) : trimmed;
+  const unquoted =
+    (trimmed.startsWith('"') && trimmed.endsWith('"')) ||
+    (trimmed.startsWith("'") && trimmed.endsWith("'"))
+      ? trimmed.slice(1, -1).trim()
+      : trimmed;
+  const normalized = unquoted.startsWith("$/") ? unquoted.slice(1) : unquoted;
+  const base64Candidate = normalized.replace(/\s+/g, "");
   const jsonText = existsSync(normalized)
     ? readFileSync(normalized, "utf8")
     : normalized.startsWith("{")
       ? normalized
-      : Buffer.from(normalized, "base64").toString("utf8");
-  const parsed = JSON.parse(jsonText) as {
+      : Buffer.from(base64Candidate, "base64").toString("utf8");
+
+  let parsed: {
     client_email?: string;
     private_key?: string;
   };
+
+  try {
+    parsed = JSON.parse(jsonText) as {
+      client_email?: string;
+      private_key?: string;
+    };
+  } catch (error) {
+    throw new Error(
+      `GOOGLE_SERVICE_ACCOUNT_JSON must be valid raw JSON, base64-encoded JSON, or a readable file path. ${formatError(error)}`
+    );
+  }
 
   if (!parsed.client_email || !parsed.private_key) {
     throw new Error("GOOGLE_SERVICE_ACCOUNT_JSON is missing required fields.");
